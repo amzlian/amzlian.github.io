@@ -671,10 +671,8 @@ footer a { color: var(--text-main); }
 }
 
 /* =========================================
-   THEME OVERRIDES (Dynamic Styles)
+   THEME OVERRIDES & EXTREME ANIMATIONS
 ========================================= */
-/* Smooth transition for theme switching */
-
 @keyframes popOut {
   0% { transform: scale(0.95); opacity: 0; filter: blur(4px); }
   50% { transform: scale(1.02); filter: blur(0px); }
@@ -690,112 +688,86 @@ footer a { color: var(--text-main); }
   100% { text-shadow: -3px 0 0 red, 3px 0 0 blue; transform: translate(0, 0); }
 }
 
-/* Class ini akan dipicu oleh JS setiap tema diganti */
+/* Memaksa elemen melompat saat tema diganti */
 body.theme-transitioning h1, 
 body.theme-transitioning h2, 
 body.theme-transitioning p,
-body.theme-transitioning .timeline-card,
-body.theme-transitioning .about-card {
-  animation: popOut 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+body.theme-transitioning .timeline-item,
+body.theme-transitioning .about-card,
+body.theme-transitioning .skill-category,
+body.theme-transitioning .cert-card {
+  animation: popOut 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
 }
 
-/* Transisi halus untuk perpindahan warna */
-body, .about-card, .timeline-card, .research-card, .cert-card, .btn {
-  transition: background-color 0.5s ease, color 0.5s ease, border-radius 0.5s ease, box-shadow 0.5s ease, clip-path 0.5s ease;
-}
-
-/* --- THEME 1: MINIMALIST (Neumorphism, Soft & Bouncy) --- */
+/* --- THEME 1: MINIMALIST (Neumorphism) --- */
 [data-theme="minimalist"] {
-  --bg-color: #e0e5ec;
-  --surface-color: #e0e5ec;
-  --surface-hover: #ffffff;
-  --text-main: #2d3748;
-  --text-muted: #718096;
-  --accent: #3182ce;
-  --accent-glow: rgba(49, 130, 206, 0.2);
+  --bg-color: #e0e5ec !important;
+  --surface-color: #e0e5ec !important;
+  --text-main: #2d3748 !important;
+  --text-muted: #718096 !important;
+  --accent: #3182ce !important;
 }
 
-[data-theme="minimalist"] h1, [data-theme="minimalist"] h2, [data-theme="minimalist"] h3 {
-  color: #1a202c;
-  font-weight: 600;
-}
+[data-theme="minimalist"] h1, [data-theme="minimalist"] h2 { color: #1a202c !important; }
 
+/* Paksa bentuk kotak membulat 3D */
 [data-theme="minimalist"] .about-card,
-[data-theme="minimalist"] .timeline-card,
+[data-theme="minimalist"] .timeline-item,
 [data-theme="minimalist"] .research-card,
-[data-theme="minimalist"] .cert-card {
-  border-radius: 30px;
-  border: none;
-  background: #e0e5ec;
-  /* Efek 3D Neumorphism */
-  box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+[data-theme="minimalist"] .cert-card,
+[data-theme="minimalist"] .skill-category,
+[data-theme="minimalist"] .form-group input,
+[data-theme="minimalist"] .form-group textarea {
+  border-radius: 30px !important;
+  border: none !important;
+  background: #e0e5ec !important;
+  box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5) !important;
 }
 
-[data-theme="minimalist"] .about-card:hover,
-[data-theme="minimalist"] .timeline-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 12px 12px 20px rgba(163,177,198,0.7), -12px -12px 20px rgba(255,255,255, 0.6);
+[data-theme="minimalist"] .btn {
+  border-radius: 30px !important;
+  box-shadow: 5px 5px 10px rgba(163,177,198,0.6), -5px -5px 10px rgba(255,255,255, 0.5) !important;
 }
 
-[data-theme="minimalist"] .btn-primary {
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(163,177,198,0.6), -5px -5px 10px rgba(255,255,255, 0.5);
-}
-
-/* --- THEME 2: CYBERPUNK (Glitch, Sharp & Neon) --- */
+/* --- THEME 2: CYBERPUNK (Tajam & Neon) --- */
 [data-theme="cyberpunk"] {
-  --bg-color: #050505;
-  --surface-color: #111111;
-  --surface-hover: #1a1a1a;
-  --text-main: #e0e0e0;
-  --text-muted: #888888;
-  --accent: #facc15;
-  --accent-glow: rgba(250, 204, 21, 0.3);
+  --bg-color: #050505 !important;
+  --surface-color: #111111 !important;
+  --text-main: #e0e0e0 !important;
+  --text-muted: #888888 !important;
+  --accent: #facc15 !important;
 }
 
 [data-theme="cyberpunk"] h1, [data-theme="cyberpunk"] h2 {
-  font-family: 'JetBrains Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-family: 'JetBrains Mono', monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
 }
 
-/* Efek teks rusak saat disorot mouse */
 [data-theme="cyberpunk"] h1:hover, [data-theme="cyberpunk"] h2:hover {
-  animation: glitch 0.3s linear infinite;
-  color: #fff;
+  animation: glitch 0.3s linear infinite !important;
+  color: #fff !important;
 }
 
+/* Paksa bentuk tajam dan terpotong di sudutnya */
 [data-theme="cyberpunk"] .about-card,
-[data-theme="cyberpunk"] .timeline-card,
+[data-theme="cyberpunk"] .timeline-item,
 [data-theme="cyberpunk"] .research-card,
 [data-theme="cyberpunk"] .cert-card,
-[data-theme="cyberpunk"] .form-group input, 
+[data-theme="cyberpunk"] .skill-category,
+[data-theme="cyberpunk"] .form-group input,
 [data-theme="cyberpunk"] .form-group textarea {
-  border-radius: 0px;
-  background: #000;
-  border: 2px solid var(--accent);
-  /* Hard block shadow */
-  box-shadow: 6px 6px 0px rgba(250, 204, 21, 0.7);
-  /* Efek sudut terpotong (Cut corners) */
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
+  border-radius: 0px !important;
+  background: #000 !important;
+  border: 2px solid var(--accent) !important;
+  box-shadow: 6px 6px 0px rgba(250, 204, 21, 0.7) !important;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%) !important;
 }
 
-[data-theme="cyberpunk"] .about-card:hover,
-[data-theme="cyberpunk"] .timeline-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px rgba(250, 204, 21, 1);
-}
-
-[data-theme="cyberpunk"] .btn-primary {
-  border-radius: 0;
-  background: transparent;
-  color: var(--accent);
-  border: 2px solid var(--accent);
-  text-transform: uppercase;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
-}
-
-[data-theme="cyberpunk"] .btn-primary:hover {
-  background: var(--accent);
-  color: #000;
+[data-theme="cyberpunk"] .btn {
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--accent) !important;
+  border: 2px solid var(--accent) !important;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%) !important;
 }
