@@ -541,18 +541,7 @@ footer a { color: var(--text-main); }
    RESPONSIVE DESIGN & MOBILE CAROUSEL
 ========================================= */
 @media (max-width: 900px) {
-    @media (max-width: 900px) {
-  /* Memberi jarak aman kiri-kanan dan antar elemen */
-  .about-card {
-    margin: 15px 5%; /* Menjaga agar tidak nempel ke pinggir layar */
-    padding: 20px;
-  }
-  
-  .about-buttons {
-    justify-content: center; /* Tombol jadi di tengah agar estetik di HP */
-  }
-}
-
+    
       /* =========================================
      ANIMASI "SWIPE" DISTRAKSI UNTUK MOBILE
   ========================================= */
