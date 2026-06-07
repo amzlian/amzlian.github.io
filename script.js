@@ -81,7 +81,7 @@ function handleSubmit(event) {
     setTimeout(() => {
         // Menggunakan SweetAlert2 untuk notifikasi yang modern
         Swal.fire({
-            title: 'Ahmad Zaki Julian',
+            title: 'SUCCSESS🚀',
             text: 'Your message has been sent successfully! I will get back to you soon.',
             icon: 'success',
             background: '#1e293b', // Warna background pop-up (senada dengan tema)
