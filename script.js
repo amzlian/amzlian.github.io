@@ -77,15 +77,25 @@ function handleSubmit(event) {
     btn.innerHTML = 'Sending...';
     btn.style.opacity = '0.7';
 
-    // Simulate data submission
+       // Simulate data submission
     setTimeout(() => {
-        alert("Your message has been sent successfully! I will get back to you soon.");
+        // Menggunakan SweetAlert2 untuk notifikasi yang modern
+        Swal.fire({
+            title: 'Ahmad Zaki Julian',
+            text: 'Your message has been sent successfully! I will get back to you soon.',
+            icon: 'success',
+            background: '#1e293b', // Warna background pop-up (senada dengan tema)
+            color: '#f8fafc', // Warna teks
+            confirmButtonColor: '#10b981' // Warna tombol hijau
+        });
+        
         event.target.reset(); // Clear the form
         
         // Restore button to initial state
         btn.innerHTML = originalText;
         btn.style.opacity = '1';
     }, 1500);
+
 }
 
 // 5. Hamburger Menu Toggle (Mobile)
