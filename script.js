@@ -142,19 +142,24 @@ function showToast(message) {
     }, 2500);
 }
 
-// Initialize theme on page load
-applyTheme(currentThemeIndex);
-
-// Listen for bubble clicks
-themeBubble.addEventListener('click', () => {
-    // Cycle to the next theme
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+// Function to apply the theme with animation trigger
+function applyTheme(index) {
+    const selectedTheme = themes[index];
     
-    applyTheme(currentThemeIndex);
+    // Set data attribute on the root HTML tag
+    document.documentElement.setAttribute('data-theme', selectedTheme.id);
+    themeIcon.textContent = selectedTheme.icon;
+    localStorage.setItem('savedThemeIndex', index);
     
-    // Show notification
-    showToast(`System updated: ${themes[currentThemeIndex].name} Mode applied.`);
-});
+    // Remove animation class
+    document.body.classList.remove('theme-transitioning');
+    
+    // Magic trick: Trigger DOM reflow to restart animation from the beginning
+    void document.body.offsetWidth; 
+    
+    // Add animation class back to make text and elements pop out
+    document.body.classList.add('theme-transitioning');
+}
 
 
 // 5. Hamburger Menu Toggle (Mobile)

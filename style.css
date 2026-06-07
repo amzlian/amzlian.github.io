@@ -674,68 +674,128 @@ footer a { color: var(--text-main); }
    THEME OVERRIDES (Dynamic Styles)
 ========================================= */
 /* Smooth transition for theme switching */
-body, .about-card, .timeline-card, .research-card, .cert-card, .btn, #navbar {
-  transition: background-color 0.4s ease, color 0.4s ease, border-radius 0.4s ease, box-shadow 0.4s ease;
+
+@keyframes popOut {
+  0% { transform: scale(0.95); opacity: 0; filter: blur(4px); }
+  50% { transform: scale(1.02); filter: blur(0px); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-/* --- THEME 1: MINIMALIST (Light Mode) --- */
+@keyframes glitch {
+  0% { text-shadow: 3px 0 0 red, -3px 0 0 blue; transform: translate(2px, 0); }
+  20% { text-shadow: -3px 0 0 red, 3px 0 0 blue; transform: translate(-2px, 0); }
+  40% { text-shadow: 3px 0 0 red, -3px 0 0 blue; transform: translate(2px, 2px); }
+  60% { text-shadow: -3px 0 0 red, 3px 0 0 blue; transform: translate(-2px, -2px); }
+  80% { text-shadow: 3px 0 0 red, -3px 0 0 blue; transform: translate(2px, 0); }
+  100% { text-shadow: -3px 0 0 red, 3px 0 0 blue; transform: translate(0, 0); }
+}
+
+/* Class ini akan dipicu oleh JS setiap tema diganti */
+body.theme-transitioning h1, 
+body.theme-transitioning h2, 
+body.theme-transitioning p,
+body.theme-transitioning .timeline-card,
+body.theme-transitioning .about-card {
+  animation: popOut 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Transisi halus untuk perpindahan warna */
+body, .about-card, .timeline-card, .research-card, .cert-card, .btn {
+  transition: background-color 0.5s ease, color 0.5s ease, border-radius 0.5s ease, box-shadow 0.5s ease, clip-path 0.5s ease;
+}
+
+/* --- THEME 1: MINIMALIST (Neumorphism, Soft & Bouncy) --- */
 [data-theme="minimalist"] {
-  --bg-color: #f8fafc;
-  --surface-color: #ffffff;
-  --surface-hover: #f1f5f9;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --accent: #3b82f6; /* Modern Blue */
-  --accent-glow: rgba(59, 130, 246, 0.2);
+  --bg-color: #e0e5ec;
+  --surface-color: #e0e5ec;
+  --surface-hover: #ffffff;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --accent: #3182ce;
+  --accent-glow: rgba(49, 130, 206, 0.2);
 }
 
-[data-theme="minimalist"] h1, 
-[data-theme="minimalist"] h2, 
-[data-theme="minimalist"] h3 {
-  color: #0f172a; /* Dark text for headings */
+[data-theme="minimalist"] h1, [data-theme="minimalist"] h2, [data-theme="minimalist"] h3 {
+  color: #1a202c;
+  font-weight: 600;
 }
 
 [data-theme="minimalist"] .about-card,
 [data-theme="minimalist"] .timeline-card,
 [data-theme="minimalist"] .research-card,
-[data-theme="minimalist"] .cert-card,
-[data-theme="minimalist"] .btn {
-  border-radius: 30px; /* Very round soft UI */
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+[data-theme="minimalist"] .cert-card {
+  border-radius: 30px;
+  border: none;
+  background: #e0e5ec;
+  /* Efek 3D Neumorphism */
+  box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
 }
 
-[data-theme="minimalist"] .form-group input, 
-[data-theme="minimalist"] .form-group textarea {
-  background: #ffffff;
-  color: #000;
+[data-theme="minimalist"] .about-card:hover,
+[data-theme="minimalist"] .timeline-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 12px 12px 20px rgba(163,177,198,0.7), -12px -12px 20px rgba(255,255,255, 0.6);
 }
 
-/* --- THEME 2: CYBERPUNK (Neon & Sharp) --- */
+[data-theme="minimalist"] .btn-primary {
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px rgba(163,177,198,0.6), -5px -5px 10px rgba(255,255,255, 0.5);
+}
+
+/* --- THEME 2: CYBERPUNK (Glitch, Sharp & Neon) --- */
 [data-theme="cyberpunk"] {
   --bg-color: #050505;
   --surface-color: #111111;
   --surface-hover: #1a1a1a;
   --text-main: #e0e0e0;
   --text-muted: #888888;
-  --accent: #facc15; /* Cyberpunk Yellow */
+  --accent: #facc15;
   --accent-glow: rgba(250, 204, 21, 0.3);
-  --font-sans: 'JetBrains Mono', monospace; /* Change entirely to Matrix-style font */
+}
+
+[data-theme="cyberpunk"] h1, [data-theme="cyberpunk"] h2 {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Efek teks rusak saat disorot mouse */
+[data-theme="cyberpunk"] h1:hover, [data-theme="cyberpunk"] h2:hover {
+  animation: glitch 0.3s linear infinite;
+  color: #fff;
 }
 
 [data-theme="cyberpunk"] .about-card,
 [data-theme="cyberpunk"] .timeline-card,
 [data-theme="cyberpunk"] .research-card,
 [data-theme="cyberpunk"] .cert-card,
-[data-theme="cyberpunk"] .btn,
 [data-theme="cyberpunk"] .form-group input, 
 [data-theme="cyberpunk"] .form-group textarea {
-  border-radius: 0; /* Extremely sharp edges */
-  border: 1px solid var(--accent);
-  box-shadow: 4px 4px 0px var(--accent); /* Hard shadow effect */
+  border-radius: 0px;
+  background: #000;
+  border: 2px solid var(--accent);
+  /* Hard block shadow */
+  box-shadow: 6px 6px 0px rgba(250, 204, 21, 0.7);
+  /* Efek sudut terpotong (Cut corners) */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
 }
 
-[data-theme="cyberpunk"] .btn:hover {
-  box-shadow: -4px -4px 0px var(--accent);
+[data-theme="cyberpunk"] .about-card:hover,
+[data-theme="cyberpunk"] .timeline-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px rgba(250, 204, 21, 1);
 }
 
+[data-theme="cyberpunk"] .btn-primary {
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+[data-theme="cyberpunk"] .btn-primary:hover {
+  background: var(--accent);
+  color: #000;
+}
