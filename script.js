@@ -68,7 +68,7 @@ function handleSubmit(event) {
     const formData = new FormData(form);
     
     // PENTING: Masukkan Access Key Web3Forms kamu di sini
-    formData.append("access_key", "PASTE_KODE_DARI_EMAIL_DISINI");
+    formData.append("access_key", "9daaf840-5ae0-4563-a5d6-164884743dd3");
 
     fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -78,7 +78,7 @@ function handleSubmit(event) {
         let json = await response.json();
         if (response.status == 200) {
             Swal.fire({
-                title: 'Wih, ada pesan masuk! 🚀',
+                title: 'success 🚀',
                 text: 'Your message has been sent successfully! I will get back to you soon.',
                 icon: 'success',
                 background: '#1e293b', 
